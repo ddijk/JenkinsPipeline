@@ -7,5 +7,6 @@
 
 #JAVA_HOME=<path-to-jdk-of-client-platform>      # e.g. /opt/jdk-11.0.3
 
+echo "Java home is $JAVA_HOME"
 jlink --output custom_jre --module-path=$JAVA_HOME/jmods --add-modules java.instrument,java.security.jgss,java.compiler,java.desktop,java.logging,java.rmi,java.security.sasl,java.xml,java.sql,java.naming,java.management,jdk.management.agent,jdk.httpserver
 
