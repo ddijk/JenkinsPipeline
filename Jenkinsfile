@@ -20,6 +20,7 @@ pipeline {
          steps {
                script {
 		   echo "java home is $JAVA_HOME"
+		   echo "java home LINUX is $JAVA_HOME_LINUX"
                }
          }
          }
