@@ -8,10 +8,10 @@ pipeline {
         VERSION = readMavenPom().getVersion()
     }
 
-    tools {
+     //tools {
         // maven 'maven_3.5.4'
       //  jdk 'jdk11'
-    }
+  //  }
 
     stages {
 
