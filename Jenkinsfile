@@ -14,9 +14,14 @@ pipeline {
     }
 
     stages {
+
          // to prevent endless loop, abort when Jenkins job is triggerd by Maven Release commits
          stage('Check for GitLab trigger on commit by Maven Release Plugin') {
-		echo "java home is $JAVA_HOME"
+         steps {
+               script {
+		   echo "java home is $JAVA_HOME"
+               }
+         }
          }
     }
 }
