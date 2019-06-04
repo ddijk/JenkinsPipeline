@@ -19,8 +19,9 @@ pipeline {
          stage('Check for GitLab trigger on commit by Maven Release Plugin') {
          steps {
                script {
-		   echo "java home is $JAVA_HOME"
+		   echo "java home is $JAVA_X"
 		   echo "java home LINUX is $JAVA_HOME_LINUX"
+ 		sh "./make_release.sh release-core-${VERSION.replaceAll('-SNAPSHOT', '')}"
                }
          }
          }
