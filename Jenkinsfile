@@ -21,7 +21,9 @@ pipeline {
                script {
 		   echo "java home is $JAVA_X"
 		   echo "java home LINUX is $JAVA_HOME_LINUX"
- 		sh "./make_release.sh release-core-${VERSION.replaceAll('-SNAPSHOT', '')}"
+       ver = "${VERSION.replaceAll('-SNAPSHOT', '')}"
+       echo "ver is $ver"
+ 		sh "./make_release.sh release-core-${ver}}"
                }
          }
          }
