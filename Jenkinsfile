@@ -6,9 +6,7 @@ pipeline {
     environment {
         pom = readMavenPom file: 'pom.xml'
         VERSION = readMavenPom().getVersion()
-               script {
-		   echo "in env: java home is $JAVA_X"
-}
+       ver = "${VERSION.replaceAll('-SNAPSHOT', '')}"
     }
 
      //tools {
@@ -24,7 +22,6 @@ pipeline {
                script {
 		   echo "java home is $JAVA_X"
 		   echo "java home LINUX is $JAVA_HOME_LINUX"
-       ver = "${VERSION.replaceAll('-SNAPSHOT', '')}"
        echo "ver is $ver"
  		sh "./make_release.sh release-core-${ver}}"
                }
