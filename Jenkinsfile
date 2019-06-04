@@ -6,6 +6,9 @@ pipeline {
     environment {
         pom = readMavenPom file: 'pom.xml'
         VERSION = readMavenPom().getVersion()
+               script {
+		   echo "in env: java home is $JAVA_X"
+}
     }
 
      //tools {
