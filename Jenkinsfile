@@ -18,14 +18,27 @@ pipeline {
 
          // to prevent endless loop, abort when Jenkins job is triggerd by Maven Release commits
          stage('Check for GitLab trigger on commit by Maven Release Plugin') {
-         steps {
-               script {
-		   echo "java home is $JAVA_X"
-		   echo "java home LINUX is $JAVA_HOME_LINUX"
-       echo "ver is $ver"
- 		sh "./make_release.sh release-core-${ver}}"
-               }
+            steps {
+                  script {
+   		   echo "java home is $JAVA_X"
+   		   echo "java home LINUX is $JAVA_HOME_LINUX"
+                       echo "ver is $ver"
+    		sh "./make_release.sh release-core-${ver}}"
+                  }
+            }
          }
+         stage('Checkout other repo') {
+            steps {
+                  script {
+                         sh 'mkdir -p themes deps'
+                          dir('deps') {
+                              checkout resolveScm(source: git('https://github.com/ddijk/JacksonWeb'), targets: [BRANCH_NAME, 'master'])
+                          }
+			 echo "About to build Jackson project"
+			 sh 'mvn test'
+                  }
+
+            }
          }
     }
 }
