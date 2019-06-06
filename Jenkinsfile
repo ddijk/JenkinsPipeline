@@ -28,15 +28,15 @@ pipeline {
             }
          }
          stage('Checkout other repo') {
-            steps {
-                  script {
-                         sh 'mkdir -p themes deps'
-                          dir('deps') {
-                              checkout resolveScm(source: git('https://github.com/ddijk/JacksonWeb'), targets: [BRANCH_NAME, 'master'])
-                          }
-			 echo "About to build Jackson project"
-			 sh 'mvn test'
-                  }
+          steps {
+           checkout([$class: 'GitSCM', 
+            branches: [[name: '*/master']], 
+            doGenerateSubmoduleConfigurations: false, 
+            extensions: [[$class: 'CleanBeforeCheckout'], 
+                [$class: 'RelativeTargetDirectory', relativeTargetDir: 'targetDir']], 
+            submoduleCfg: [], 
+            userRemoteConfigs: [[credentialsId: 'github',
+                url: 'https://github.com/ddijk/JacksonWeb']]])
 
             }
          }
