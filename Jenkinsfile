@@ -23,7 +23,7 @@ pipeline {
    		   echo "java home is $JAVA_X"
    		   echo "java home LINUX is $JAVA_HOME_LINUX"
                        echo "ver is $ver"
-    		sh "./make_release.sh release-core-${ver}}"
+//    		sh "./make_release.sh release-core-${ver}}"
                   }
             }
          }
